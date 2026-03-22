@@ -1,44 +1,41 @@
-efill-printer-service/
-│
-├── backend/
-│   ├── server.js
-│   ├── models/ServiceRequest.js
-│   ├── routes/serviceRoutes.js
-│   └── .env
-│
-└── frontend/
-    ├── pages/
-    │   ├── index.js
-    │   └── contact.js
-    ├── components/
-    │   └── Navbar.js
-    └── styles/globals.css
-    <!DOCTYPE html>
-<html>
-<head>
-  <title>Contact</title>
-  <link rel="stylesheet" href="style.css">
-</head>
 
-<body>
+CREATE DATABASE lawrence_enterprise;
+USE lawrence_enterprise;
 
-<nav>
-  <h2>Contact</h2>
-</nav>
+CREATE TABLE admins (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ username VARCHAR(100),
+ password VARCHAR(255)
+);
 
-<div class="container">
+INSERT INTO admins (username,password)
+VALUES ('admin','admin123');
 
-  <h1>Contact Us</h1>
+CREATE TABLE products (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ name VARCHAR(200),
+ price DECIMAL(10,2),
+ stock INT
+);
 
-  <form>
-    <input placeholder="Name"><br><br>
-    <input placeholder="Email"><br><br>
-    <textarea placeholder="Message"></textarea><br><br>
+CREATE TABLE cart (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ product_id INT,
+ qty INT
+);
 
-    <button class="btn btn-primary">Send</button>
-  </form>
+CREATE TABLE orders (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ total DECIMAL(10,2),
+ status VARCHAR(50) DEFAULT 'Pending'
+);
 
-</div>
-
-</body>
-</html>
+CREATE TABLE repairs (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ tracking_id VARCHAR(50),
+ customer_name VARCHAR(150),
+ phone VARCHAR(50),
+ device VARCHAR(150),
+ issue TEXT,
+ status VARCHAR(100) DEFAULT 'Received'
+);
